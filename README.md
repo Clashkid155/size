@@ -13,8 +13,8 @@ and the Flutter guide for
 
 # Disk Size for Desktop
 
-A simple plugin that can display disk size on *Linux and Windows*.
-**Mac not supported yet.**
+A simple plugin that displays disk size on *Linux and Windows*.
+**Mac not supported, yet.**
 
 ## Features
 
@@ -35,25 +35,25 @@ void main() async{
   print(x.getAvailableDiskSpace('/home'));  // 800007566 -> int
   print(x.getFreeDiskSpace('/home'));  // 800002566 -> int
   print(x.getDiskCapacity('/home'));  // 4540002566 -> int
-  print(await Directory.current.is_empty()); // true -> bool
+  print(await Directory.current.is_empty()); // false -> bool
 ```
 
-**Note:** On linux, if your home, root and any other directory are on the different partition, you partiton size will returned
+**Note:** On linux, if your home, root and any other directory are on the different partition, your partition size will returned.
 
 ## Additional information
 
-Each get.. function return an int which is actally the disk size in byte
+Each get.. function return an int which is actually the disk size in byte.
 
 ### Difference between getFreeDiskSpace and getAvailableDiskSpace
 
-Arrcording to AlexP on [askubuntu](https://askubuntu.com/a/867073)
+According to AlexP on [askubuntu](https://askubuntu.com/a/867073)
 
 > * Free memory is the amount of memory which is currently not used for anything. This number should be small, because memory which is not used is simply wasted.
 > * Available memory is the amount of memory which is available for allocation to a new process or to existing processes.
 
-## Buliding lib
+## Building lib
 
-If you what to build the lib
+If you what to build the lib.
 
 ```bash
 cd size

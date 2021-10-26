@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:size/size.dart';
 
 void main() async {
+  print(Directory.current.path);
   var x = Sizes();
   print(await Directory.current.is_empty());
   print(x.getAvailableDiskSpace('/home'));

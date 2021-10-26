@@ -3,5 +3,6 @@
         "string": "cpp",
         "filesystem": "cpp",
         "iosfwd": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "${workspaceFolder}/lib/shared"
 }

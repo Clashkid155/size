@@ -3,28 +3,30 @@ import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'package:path/path.dart' as path;
 
-typedef RootSpaceFun = Int64 Function();
-typedef RootSpaceDart = int Function();
-typedef SizeFun = Int64 Function(Pointer<Utf8>);
-typedef SizeDart = int Function(Pointer<Utf8>);
+//typedef _RootSpaceFun = Int64 Function();
+//typedef _RootSpaceDart = int Function();
+typedef _SizeFun = Int64 Function(Pointer<Utf8>);
+typedef _SizeDart = int Function(Pointer<Utf8>);
 var libraryPath = 'lib/shared/libsize.so';
 
-//var libraryPath = 'lib/shared/libsize.so';
-
-///home/francis/Projects/Size/size/lib/shared/libsize.so
+/// Base class
 class Sizes {
+  late final DynamicLibrary _dylib;
   Sizes() {
+    String _libraryPath = 'lib/shared/libsize.so';
     if (Platform.isWindows) {
       libraryPath = path.join('lib', 'shared', 'size.dll');
     } else if (Platform.isMacOS) {
       libraryPath = path.join('lib', 'shared', 'libsize.dylib');
     }
+    _dylib = DynamicLibrary.open(_libraryPath);
   }
-  final _dylib = DynamicLibrary.open(libraryPath);
 
+  /// Return an int of the available disk space from the path supplied.
+  /// This doesn't check Directory/File size.
   int getAvailableDiskSpace(String path) {
     var root = _dylib
-        .lookupFunction<SizeFun, SizeDart>('getAvailableDiskSpace')
+        .lookupFunction<_SizeFun, _SizeDart>('getAvailableDiskSpace')
         .call(path.toNativeUtf8());
     if (root == -1) {
       throw Exception('Invalid File Path');
@@ -32,11 +34,11 @@ class Sizes {
     return root;
   }
 
-  /// Return the free disk space from the part supplied
-  /// This doesn't check Directory/File size
+  /// Return an int of the free disk space from the path supplied
+  /// This doesn't check Directory/File size.
   int getFreeDiskSpace(String path) {
     var root = _dylib
-        .lookupFunction<SizeFun, SizeDart>('getFreeDiskSpace')
+        .lookupFunction<_SizeFun, _SizeDart>('getFreeDiskSpace')
         .call(path.toNativeUtf8());
     if (root == -1) {
       throw Exception('Invalid File Path');
@@ -44,11 +46,11 @@ class Sizes {
     return root;
   }
 
-  /// Return the disk space from the part supplied
+  /// Return an int of the disk space from the path supplied
   /// This doesn't check Directory/File size
   int getDiskCapacity(String path) {
     var root = _dylib
-        .lookupFunction<SizeFun, SizeDart>('getDiskCapacity')
+        .lookupFunction<_SizeFun, _SizeDart>('getDiskCapacity')
         .call(path.toNativeUtf8());
     if (root == -1) {
       throw Exception('Invalid File Path');
@@ -56,9 +58,10 @@ class Sizes {
     return root;
   }
 
+  /// Check if a Directory is empty. => bool
   bool _empty(String path) {
     var root = _dylib
-        .lookupFunction<SizeFun, SizeDart>('empty')
+        .lookupFunction<_SizeFun, _SizeDart>('empty')
         .call(path.toNativeUtf8());
     if (root == -1) {
       throw Exception('Invalid File Path');
@@ -67,10 +70,10 @@ class Sizes {
     } else {
       return true; // 1 is empty while 0 is not empty
     }
-    //return root;
   }
 }
 
+/// Adds is_empty  on dart Directory class
 extension Empty on Directory {
   // ignore: non_constant_identifier_names
   Future<bool> is_empty() async {
