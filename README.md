@@ -14,7 +14,8 @@ and the Flutter guide for
 # Disk Size for Desktop
 
 A simple plugin that displays disk size on *Linux and Windows*.
-**Mac not supported, yet.**
+**Mac not supported, yet.**\
+**This plugin does not depend on Flutter.**
 
 ## Features
 
@@ -38,11 +39,11 @@ void main() async{
   print(await Directory.current.is_empty()); // false -> bool
 ```
 
-**Note:** On linux, if your home, root and any other directory are on the different partition, your partition size will returned.
+**Note:** On linux, if your home, root and any other directory are on different partitions, your partition size will be returned.
 
 ## Additional information
 
-Each get.. function return an int which is actually the disk size in byte.
+Each get.. function returns an int which is actually the disk size in byte.
 
 ### Difference between getFreeDiskSpace and getAvailableDiskSpace
 

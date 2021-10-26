@@ -7,17 +7,19 @@ import 'package:path/path.dart' as path;
 //typedef _RootSpaceDart = int Function();
 typedef _SizeFun = Int64 Function(Pointer<Utf8>);
 typedef _SizeDart = int Function(Pointer<Utf8>);
-var libraryPath = 'lib/shared/libsize.so';
 
 /// Base class
+///
+/// Each method throws an Invalid File Path exception when provided path does not exist.
 class Sizes {
   late final DynamicLibrary _dylib;
+  late final String _libraryPath;
   Sizes() {
-    String _libraryPath = 'lib/shared/libsize.so';
+    _libraryPath = 'lib/shared/libsize.so';
     if (Platform.isWindows) {
-      libraryPath = path.join('lib', 'shared', 'size.dll');
+      _libraryPath = path.join('lib', 'shared', 'size.dll');
     } else if (Platform.isMacOS) {
-      libraryPath = path.join('lib', 'shared', 'libsize.dylib');
+      _libraryPath = path.join('lib', 'shared', 'libsize.dylib');
     }
     _dylib = DynamicLibrary.open(_libraryPath);
   }
@@ -58,7 +60,7 @@ class Sizes {
     return root;
   }
 
-  /// Check if a Directory is empty. => bool
+  /// Check if Directory is empty. => bool
   bool _empty(String path) {
     var root = _dylib
         .lookupFunction<_SizeFun, _SizeDart>('empty')
