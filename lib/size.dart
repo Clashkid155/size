@@ -15,11 +15,12 @@ class Sizes {
   late final DynamicLibrary _dylib;
   late final String _libraryPath;
   Sizes() {
-    _libraryPath = 'lib/shared/libsize.so';
+    _libraryPath = 'libsize.so';
     if (Platform.isWindows) {
-      _libraryPath = path.join('lib', 'shared', 'size.dll');
+      _libraryPath = 'size.dll'; //path.join('lib', 'shared', 'size.dll');
     } else if (Platform.isMacOS) {
-      _libraryPath = path.join('lib', 'shared', 'libsize.dylib');
+      _libraryPath =
+          'libsize.dylib'; //path.join('lib', 'shared', 'libsize.dylib');
     }
     _dylib = DynamicLibrary.open(_libraryPath);
   }
@@ -30,6 +31,10 @@ class Sizes {
     var root = _dylib
         .lookupFunction<_SizeFun, _SizeDart>('getAvailableDiskSpace')
         .call(path.toNativeUtf8());
+    /*var root = _dylib
+        .lookup<NativeFunction<_SizeFun>>('getAvailableDiskSpace')
+        .asFunction()
+        .call(path.toNativeUtf8());*/
     if (root == -1) {
       throw Exception('Invalid File Path');
     }

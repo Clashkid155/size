@@ -6,9 +6,9 @@ void main() async {
   var x = Sizes();
   print(await Directory.current.is_empty());
   print(x.getAvailableDiskSpace('/home'));
-  print(x.getFreeDiskSpace('/home/francis/Projects/Filesize/D'));
-  print(x.getDiskCapacity('/'));
-  var size = Sizes();
-  print(
-      'Your Disk capacity is: ${size.getDiskCapacity(Directory.current.path)}');
+  //print(x.getFreeDiskSpace('/home/francis/Projects/Filesize/D'));
+  //print(x.getDiskCapacity('/'));
+  //var size = Sizes();
+  //print(
+  //   'Your Disk capacity is: ${size.getDiskCapacity(Directory.current.path)}');
 }

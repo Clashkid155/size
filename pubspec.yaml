@@ -1,6 +1,6 @@
 name: size
 description: A simple plugin that can display disk size on desktop.
-version: 1.0.3
+version: 1.0.3-1
 repository: https://github.com/Clashkid155/size
 issue_tracker: https://github.com/Clashkid155/size/issues
 # homepage: https://www.example.com
@@ -19,7 +19,6 @@ flutter:
 dependencies:
   ffi: ^1.1.2
   path: ^1.8.0
-#   path: ^1.8.0
 
 dev_dependencies:
   lints: ^1.0.0
