@@ -62,3 +62,5 @@ mkdir build && cd build
 cmake -S ..
 make
 ```
+
+### **Create an issue if you've any problem**
