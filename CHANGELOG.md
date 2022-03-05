@@ -16,6 +16,15 @@
 
 ## 1.0.3-1
 
-- Fix libsize not found at least on linux while Flutter.
+- Fix libsize not found at least on linux while using Flutter.
 
 - Restructure code and files.
+
+## 1.0.4
+
+- Changes from 1.0.3-1 and include windows.
+
+## 1.0.4-1
+
+- Clean up code.
+- Separate dart and flutter version.
