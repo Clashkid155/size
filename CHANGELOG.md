@@ -28,3 +28,9 @@
 
 - Clean up code.
 - Separate dart and flutter version.
+
+## 1.0.5
+
+- Changes in 1.0.4-1.
+- Finally fix error with libs.
+- Prevent `is_empty` from working on files.

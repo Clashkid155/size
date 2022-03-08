@@ -13,9 +13,8 @@ and the Flutter guide for
 
 # Disk Size for Desktop
 
-A simple plugin that displays disk size on *Linux and Windows*.
-**Mac not supported, yet.**\
-**This plugin does not depend on Flutter.**
+A simple package which displays disk size on *Linux and Windows*.
+**Mac not supported, yet.**
 
 ## Features
 
@@ -32,12 +31,15 @@ A simple plugin that displays disk size on *Linux and Windows*.
 ```dart
 import 'package:size/size.dart';
 void main() async{
-  var x = Sizes();
+  await Size.init(); // Initialize plugin
+  var x = Size();
   print(x.getAvailableDiskSpace('/home'));  // 800007566 -> int
   print(x.getFreeDiskSpace('/home'));  // 800002566 -> int
   print(x.getDiskCapacity('/home'));  // 4540002566 -> int
   print(await Directory.current.is_empty()); // false -> bool
 ```
+
+Always use `await Size.init();` to initialize package before trying any other method. This will download the required libs since they can't be bundled with this Package.
 
 **Note:** On linux, if your home, root and any other directory are on different partitions, your partition size will be returned.
 
@@ -63,4 +65,4 @@ cmake -S ..
 make
 ```
 
-### **Create an issue if you've any problem**
+### **Create an issue if you've any problem.**
