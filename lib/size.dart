@@ -32,9 +32,9 @@ class Size {
 
   Size() {
     if (Platform.isWindows) {
-      _libraryPath = 'size.dll';
+      _libraryPath = r'lib\size.dll';
     } else if (Platform.isLinux) {
-      _libraryPath = 'libsize.so';
+      _libraryPath = 'lib/libsize.so';
     } else if (Platform.isMacOS) {
       throw Exception("Mac Os not yet supported");
     }

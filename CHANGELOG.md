@@ -34,3 +34,7 @@
 - Changes in 1.0.4-1.
 - Finally fix error with libs.
 - Prevent `is_empty` from working on files.
+
+## 1.0.5+1
+
+- Fix mistake
